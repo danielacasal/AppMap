@@ -1,6 +1,7 @@
 import React from 'react'
-import { Platform } from 'react-native' 
+import { Platform, TouchableOpacity } from 'react-native' 
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Ionicons from "@expo/vector-icons/Ionicons"
 
 import { COLORS } from '../constants' 
 
@@ -9,6 +10,7 @@ import PlaceListScreen from '../screens/PlaceListScreen'
 import PlaceDetailScreen from '../screens/PlaceDetailScreen'
 import NewPlaceScreen from '../screens/NewPlaceScreen'
 import MapScreen from '../screens/MapScreen'
+
 
 
 const PlaceStack = createNativeStackNavigator()
@@ -29,7 +31,20 @@ const PlaceNavigator = () => (
         <PlaceStack.Screen
             name="Direcciones"
             component={PlaceListScreen}
-            options={{title: 'Direcciones'}} 
+            options={({navigation}) => ({
+                title: "Direcciones",
+                headerRight: () => (
+                    <TouchableOpacity>
+                        <Ionicons 
+                            name="md-add" 
+                            color={Plarform.OS === "android" ? "white": COLORS.DARK_SIENNA}
+                            size={23}
+                        
+                        />
+                    </TouchableOpacity>
+
+                ),
+            })}
         />
         <PlaceStack.Screen
             name="Detalle"
